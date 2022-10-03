@@ -1,0 +1,80 @@
+# 引入Tensorflow框架
+"""
+常量张量与变量张量的区别，为什么要在这里演示张量计算
+"""
+import tensorflow as tf 
+
+def matrix_cal_in_graph():
+    """图中矩阵计算
+    参数:
+        无
+    返回:
+        c1: 常量张量
+        c2: 常量张量
+        res: 矩阵计算结果
+    """
+    g = tf.Graph()
+    with g.as_default():
+        # 定义张量
+        c1 = tf.constant([[1,2,4],[3,4,5]], name="c1")
+        c2 = tf.constant([[2,3],[3,6],[8,9]], name="c2")
+        # 矩阵计算
+        mat_res = tf.matmul(c1, c2, name="mat_res")
+        sess = tf.compat.v1.Session()
+        res = sess.run(mat_res)
+        return c1, c2, res
+
+def matrix_cal_in_eager():
+    """Eager矩阵计算
+    参数:
+        无
+    返回:
+        v1: 变量张量
+        v2: 变量张量
+        res: 矩阵计算结果
+    """
+    # 定义张量
+    v1 = tf.Variable([[1,2,4],[3,4,5]], name="v1")
+    v2 = tf.Variable([[2,3],[3,6],[8,9]], name="v2")
+    # 矩阵计算
+    mat_res = tf.matmul(v1, v2, name="mat_res")
+    return v1, v2, res
+
+def data_format():
+    """数据格式解析
+    参数:
+        无
+    返回:
+        v1: 变量张量
+        v2: 变量张量
+        res: 矩阵计算结果
+        c1: 常量张量
+    """
+    v1 = tf.Variable([[1,2,4],[3,4,5]], name="v1")
+    v2 = tf.Variable([[2,3],[3,6],[8,9]], name="v2")
+    # 矩阵计算
+    mat_res = tf.matmul(v1, v2, name="mat_res")
+    c1 = tf.constant(120, name="c1")
+    return v1, res, c1
+
+if __name__ == "__main__":
+    c1, c2, res = matrix_cal_in_graph()
+    print("图张量c1:{}".format(c1))
+    print("图张量c1类型:{}".format(type(c1)))
+    print("图张量c1维度:{}".format(c1.shape))
+    print("图矩阵计算结果:{}".format(res))
+    print("图计算结果维度:{}".format(res.shape))
+    v1, v2, res = matrix_cal_in_eager()
+    print("Eager张量v1:{}".format(v1))
+    print("Eager张量v1类型:{}".format(type(v1)))
+    print("Eager张量v1维度:{}".format(v1.shape))
+    print("Eager矩阵计算结果:{}".format(res))
+    print("Eager计算结果维度:{}".format(res.shape))
+    v1, res, c1 = data_format()
+    print("变量张量v1:{}".format(v1))
+    print("变量张量v1:{}".format(v1.numpy()))
+    print("矩阵计算结果:{}".format(res))
+    print("矩阵结果类型:{}".format(type(res)))
+    print("常量张量:{}".format(c1))
+    print(c1)
+    print(2*c1)

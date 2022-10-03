@@ -1,0 +1,26 @@
+from PIL import Image
+import numpy as np 
+import cv2
+
+
+def read_image(image_path):
+	img = Image.open(image_path)
+	img_type = type(img)
+	img_size = img.size 
+	img_matrix = np.array(img)
+	img_shape = img_matrix.shape
+	return img_type, img_size, img_shape, img_matrix
+	
+def save_image(sourceDir, objectDir):
+	img = Image.open(sourceDir)
+	img.save(objectDir, 'png')
+
+if __name__ == '__main__':
+	img_dir = "./images/python3.6.png"
+	obj_dir = "./images/save_python3.6.png"
+	img_type, img_size, img_shape, img_matrix = read_image(img_dir)
+	print("Image type:{}".format(img_type))
+	print("Image size:{}".format(img_size))
+	print("Image shape:{}".format(img_matrix.shape))
+	print("Image value:{}".format(img_matrix))
+	save_image(img_dir, obj_dir)

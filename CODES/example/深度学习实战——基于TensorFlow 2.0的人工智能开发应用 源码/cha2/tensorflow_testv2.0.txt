@@ -1,0 +1,40 @@
+import tensorflow as tf 
+"""
+matmul是什么模块？
+"""
+def matrixCompute():
+    a = tf.constant([[1,2,4],[3,4,5]])
+    b = tf.constant([[2,3],[3,6],[8,9]])
+    c = tf.matmul(a,b)
+    tfType = type(c)
+    tfShape = c.shape
+    return c, tfType, tfShape
+    # with tf.compat.v1.Session() as sess:
+    #     tfMatrixComputeResult = sess.run(c)
+    #     tfMatrixType = type(tfMatrixComputeResult)
+    #     tfMatrixComputeShape = tfMatrixComputeResult.shape
+    #     return c,tfType, tfShape, tfMatrixComputeResult, tfMatrixType, tfMatrixComputeShape 
+
+def tfDataTypeFun():
+    a = tf.constant([3,4,5])
+    tfType = type(a)
+    with tf.compat.v1.Session() as sess:
+        tfData = sess.run(a)
+        tfDataType = type(tfData)
+        return a,tfType,tfDataType,tfData
+    
+if __name__ == "__main__":
+    tfData, tfType, tfShape = matrixCompute()
+    print("tfData:{}, tfType:{}, tfShape:{}".format(tfData, tfType, tfShape))
+    # tfData, tfType, tfShape, tfMatrixComputeResult, tfMatrixType, tfMatrixShape = matrixCompute()
+    # print("Tensorflow calculate data:{}".format(tfData))
+    # print("Tensorflow calculate data type:{}".format(tfType))
+    # print("Tensorflow calculate data shape:{}".format(tfShape))
+    # print("Tensorflow matrix compute result:{}".format(tfMatrixComputeResult))
+    # print("Tensorflow calculate data type after session run:{}".format(tfMatrixType))
+    # print("Tensorflow calculate data shape after session run:{}".format(tfMatrixShape))
+    # tfData, tfType, tfDataType, tfData = tfDataTypeFun()
+    # print("Tensorflow data :{}".format(tfData))
+    # print("Tensorflow data type:{}".format(tfType))
+    # print("Tensorflow data type after session run:{}".format(tfDataType))
+    # print("Tensorflow data after session run:{}".format(tfData))
