@@ -1,3 +1,0 @@
-蓝牙控制小车https://blog.csdn.net/qq_34623621/article/details/125752472
-从零开始DIY一辆蓝牙遥控小车https://www.jianshu.com/p/af3f609057f5
-基于stm32蓝牙智能小车设计https://blog.csdn.net/nishiwodebocai21/article/details/85624173
